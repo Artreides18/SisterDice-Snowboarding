@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float torqueValue;
-    [SerializeField] float boostSpeed = 100f;
+    [SerializeField] float torqueValue = 5f;
+    [SerializeField] float boostSpeed = 25f;
     [SerializeField] float normalSpeed = 15f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] ParticleSystem trailEffects;
