@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float normalSpeed = 15f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] ParticleSystem trailEffects;
-    bool isTouchingGround = true;
+    bool isTouchingGround = false;
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
     // Start is called before the first frame update
