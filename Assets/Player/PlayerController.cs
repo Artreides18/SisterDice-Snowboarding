@@ -8,19 +8,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float normalSpeed = 15f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] ParticleSystem trailEffects;
+    [SerializeField] GameObject MainUI;
+    [SerializeField] int backflipPoints;
+    [SerializeField] int frontflipPoints;
+    float startAngle = 0.0f;
     bool isTouchingGround = false;
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
+    UI_ValuesUpdater changeValues;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         surfaceEffector2D = FindObjectOfType<SurfaceEffector2D>();
+        changeValues = MainUI.GetComponent<UI_ValuesUpdater>();
     }
 
     void OnCollisionExit2D(Collision2D other){
         if(other.gameObject.tag == "Ground"){
             trailEffects.Stop();
+            startAngle = transform.eulerAngles.z;
             isTouchingGround = false;
         }
     }
@@ -38,6 +45,7 @@ public class PlayerController : MonoBehaviour
         handleTorque();
         handleSpeed();
         handleJump();
+        handleScore();
     }
 
     void handleJump(){
@@ -60,6 +68,36 @@ public class PlayerController : MonoBehaviour
         }
         else if(Input.GetKey(KeyCode.D)){
             rb2d.AddTorque(-torqueValue);
+        }
+    }
+
+    void handleScore(){
+        float frontflipAngle = startAngle+180;
+        float backflipAngle = startAngle-180;
+        if(frontflipAngle>= 360){
+            frontflipAngle-=360;
+        }
+        if(backflipAngle<0){
+            backflipAngle+=360;
+        }
+        if(!isTouchingGround){
+            if(transform.eulerAngles.z>frontflipAngle&&startAngle<frontflipAngle){
+                changeValues.incrementScore(frontflipPoints);
+                startAngle = frontflipAngle;
+                frontflipAngle = startAngle+180;
+                if(frontflipAngle>= 180){
+                    frontflipAngle-=360;
+                }
+            }
+            if(transform.eulerAngles.z<backflipAngle&&startAngle>backflipAngle){
+                changeValues.incrementScore(backflipPoints);
+                startAngle = backflipAngle;
+                backflipAngle = startAngle-180;
+                Debug.Log(backflipAngle);
+                if(frontflipAngle<= -180){
+                    frontflipAngle+=360;
+                }
+            }
         }
     }
 }

@@ -991,8 +991,11 @@ MonoBehaviour:
   torqueValue: 3
   boostSpeed: 25
   normalSpeed: 15
-  jumpForce: 5
+  jumpForce: 40
   trailEffects: {fileID: 5573612721144664437}
+  MainUI: {fileID: 0}
+  backflipPoints: 15
+  frontflipPoints: 15
 --- !u!1001 &5670937282576244478
 PrefabInstance:
   m_ObjectHideFlags: 0
