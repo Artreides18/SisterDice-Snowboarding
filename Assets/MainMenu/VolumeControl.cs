@@ -13,6 +13,7 @@ public class VolumeControl : MonoBehaviour
         systemVariables = FindObjectOfType<SystemVariables>();
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = systemVariables.getVolume();
+        volumeValue.text = (Mathf.Round(audioSource.volume*100)).ToString();
     }
 
     public void changeVolume(float volumeChange){
