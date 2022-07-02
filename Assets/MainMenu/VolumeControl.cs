@@ -7,18 +7,20 @@ public class VolumeControl : MonoBehaviour
 {
     SystemVariables systemVariables;
     [SerializeField] TextMeshProUGUI volumeValue;
-    AudioSource audioSource;
 
     void Awake(){
         systemVariables = FindObjectOfType<SystemVariables>();
-        audioSource = GetComponent<AudioSource>();
-        audioSource.volume = systemVariables.getVolume();
-        volumeValue.text = (Mathf.Round(audioSource.volume*100)).ToString();
+        AudioListener.volume = systemVariables.getVolume();
+        volumeValue.text = (Mathf.Round(AudioListener.volume*100)).ToString();
     }
 
     public void changeVolume(float volumeChange){
-        audioSource.volume+=volumeChange;
-        systemVariables.setVolume(audioSource.volume);
-        volumeValue.text = (Mathf.Round(audioSource.volume*100)).ToString();
+        if((AudioListener.volume+volumeChange<=1.04)&&(AudioListener.volume-volumeChange>=0.05)){
+            Debug.Log(AudioListener.volume+volumeChange);
+            AudioListener.volume+=volumeChange;
+            systemVariables.setVolume(AudioListener.volume);
+            volumeValue.text = (Mathf.Round(AudioListener.volume*100)).ToString();
+        }
+        
     }
 }
