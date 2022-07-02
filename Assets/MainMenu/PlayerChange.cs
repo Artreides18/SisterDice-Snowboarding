@@ -7,10 +7,12 @@ public class PlayerChange : MonoBehaviour
 {
 
     [SerializeField] List<Sprite> PossibleSprites;
+    SystemVariables systemVariables;
     int currentSprite = 0;
     Image currentImage;
 
     void Start(){
+        systemVariables = FindObjectOfType<SystemVariables>();
         currentImage = gameObject.GetComponent<Image>();
     }
 
@@ -27,6 +29,7 @@ public class PlayerChange : MonoBehaviour
             }
         }
         currentImage.sprite = PossibleSprites[currentSprite];
+        systemVariables.setPlayerSprite(PossibleSprites[currentSprite]);
     }
     
 

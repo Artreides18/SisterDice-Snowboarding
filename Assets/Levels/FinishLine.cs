@@ -8,8 +8,12 @@ public class FinishLine : MonoBehaviour
     Scene currentScene;
     [SerializeField] float finishDelay = 1f;
     [SerializeField] ParticleSystem winEffects;
+    SystemVariables systemVariables;
+    UI_ValuesUpdater score;
 
     void Start(){
+        systemVariables = FindObjectOfType<SystemVariables>();
+        score = FindObjectOfType<UI_ValuesUpdater>();
         currentScene = SceneManager.GetActiveScene();
     }
     // Start is called before the first frame update
@@ -21,7 +25,8 @@ public class FinishLine : MonoBehaviour
     }
 
     void levelFinish(){
-        SceneManager.LoadScene(currentScene.buildIndex);
+        systemVariables.setScore(score.getScore());
+        SceneManager.LoadScene(currentScene.buildIndex+1);
         
     }
 }
