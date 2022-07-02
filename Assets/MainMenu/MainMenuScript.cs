@@ -8,7 +8,6 @@ public class MainMenuScript : MonoBehaviour
     Scene currentScene;
     [SerializeField] int firstLevelBuildNum;
     [SerializeField] int scoreboardBuildNum;
-    [SerializeField] int settingsBuildNum;
     [SerializeField] float buttonDelay = 1f;
 
     void Start(){
@@ -23,9 +22,6 @@ public class MainMenuScript : MonoBehaviour
             case 2:
                 Invoke("goToScoreboard",buttonDelay);
             break;
-            case 3:
-                Invoke("goToSettings",buttonDelay);
-            break;
             default:
                 Invoke("quitGame",buttonDelay);
             break;
@@ -38,10 +34,6 @@ public class MainMenuScript : MonoBehaviour
 
     void goToScoreboard(){
         SceneManager.LoadScene(scoreboardBuildNum);
-    }
-
-    void goToSettings(){
-        SceneManager.LoadScene(settingsBuildNum);
     }
 
     void quitGame(){

@@ -16,12 +16,17 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
     UI_ValuesUpdater changeValues;
+    SystemVariables systemVariables;
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        systemVariables = FindObjectOfType<SystemVariables>();
         surfaceEffector2D = FindObjectOfType<SurfaceEffector2D>();
         changeValues = MainUI.GetComponent<UI_ValuesUpdater>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = systemVariables.getPlayerSprite();
     }
 
     void OnCollisionExit2D(Collision2D other){
