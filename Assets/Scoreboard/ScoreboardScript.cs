@@ -39,5 +39,6 @@ public class ScoreboardScript : MonoBehaviour
                 score = 0;
             }
         }
+        systemVariables.setScore(0);
     }
 }
