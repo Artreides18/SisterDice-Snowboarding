@@ -32,8 +32,17 @@ public class SystemVariables : MonoBehaviour
         return volume;
     }
 
+    void manageSingleton(){
+        int instanceCount = FindObjectsOfType(GetType()).Length;
+        if(instanceCount>1){
+            Destroy(gameObject);
+        } else {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
-    void Awake(){
-        DontDestroyOnLoad(this.gameObject);
+    void Awake(){ 
+        manageSingleton();
     }
 }

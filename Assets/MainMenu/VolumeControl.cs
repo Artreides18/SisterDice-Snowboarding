@@ -15,8 +15,7 @@ public class VolumeControl : MonoBehaviour
     }
 
     public void changeVolume(float volumeChange){
-        if((AudioListener.volume+volumeChange<=1.04)&&(AudioListener.volume-volumeChange>=0.05)){
-            Debug.Log(AudioListener.volume+volumeChange);
+        if((AudioListener.volume<=0.96&&volumeChange>0)||(AudioListener.volume>=-0&&volumeChange<0)){
             AudioListener.volume+=volumeChange;
             systemVariables.setVolume(AudioListener.volume);
             volumeValue.text = (Mathf.Round(AudioListener.volume*100)).ToString();

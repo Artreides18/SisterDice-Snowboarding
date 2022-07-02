@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstLevelBuildNum: 1
-  scoreboardBuildNum: 3
+  scoreboardBuildNum: 2
   buttonDelay: 1
 --- !u!1 &1086950870
 GameObject:
