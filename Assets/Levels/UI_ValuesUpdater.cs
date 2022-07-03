@@ -6,6 +6,9 @@ using TMPro;
 public class UI_ValuesUpdater : MonoBehaviour
 {
     int score = 0;
+    int dings = 1;
+    [SerializeField] int awardScore = 500;
+    [SerializeField] AudioSource awardNoise;
     int startScore;
     [SerializeField] TextMeshProUGUI scoreValue;
     SystemVariables systemVariables;
@@ -24,5 +27,9 @@ public class UI_ValuesUpdater : MonoBehaviour
     public void incrementScore(int scoreChange){
         score+=scoreChange;
         scoreValue.text = score.ToString();
+        if(score>=dings*awardScore){
+            dings++;
+            awardNoise.Play();
+        }
     }
 }
